@@ -36,7 +36,7 @@ public class DivaDbToCoraOrganisationConverter implements DivaDbToCoraConverter 
 	}
 
 	private DataGroup createAndAddOrganisationWithRecordInfo(Map<String, String> map) {
-		DataGroup organisation = DataGroup.withNameInData("divaOrganisation");
+		DataGroup organisation = DataGroup.withNameInData("organisation");
 		String id = map.get(ORGANISATION_ID);
 		DataGroup recordInfo = createRecordInfo(id);
 		organisation.addChild(recordInfo);
@@ -59,14 +59,13 @@ public class DivaDbToCoraOrganisationConverter implements DivaDbToCoraConverter 
 	}
 
 	private void createAndAddOrganisationType(DataGroup organisation) {
-		organisation.addChild(DataAtomic.withNameInDataAndValue("divaOrganisationOrgType", "unit"));
+		organisation.addChild(DataAtomic.withNameInDataAndValue("organisationType", "unit"));
 	}
 
 	private void createAndAddEligibility(Map<String, String> map, DataGroup organisation) {
 		String eligible = map.get("not_eligible");
 		String coraEligible = isEligible(eligible) ? "yes" : "no";
-		organisation.addChild(
-				DataAtomic.withNameInDataAndValue("divaOrganisationEligible", coraEligible));
+		organisation.addChild(DataAtomic.withNameInDataAndValue("eligible", coraEligible));
 	}
 
 	private boolean isEligible(String eligible) {

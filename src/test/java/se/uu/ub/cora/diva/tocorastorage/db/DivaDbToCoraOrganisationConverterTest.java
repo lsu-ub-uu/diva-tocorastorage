@@ -60,7 +60,7 @@ public class DivaDbToCoraOrganisationConverterTest {
 	@Test
 	public void testMinimalValuesReturnsDataGroupWithCorrectRecordInfo() {
 		DataGroup organisation = converter.fromMap(rowFromDb);
-		assertEquals(organisation.getNameInData(), "divaOrganisation");
+		assertEquals(organisation.getNameInData(), "organisation");
 
 		assertCorrectRecordInfoWithId(organisation, "someOrgId");
 	}
@@ -69,7 +69,7 @@ public class DivaDbToCoraOrganisationConverterTest {
 	public void testOrganisationName() {
 		rowFromDb.put("defaultname", "Java-fakulteten");
 		DataGroup organisation = converter.fromMap(rowFromDb);
-		assertEquals(organisation.getNameInData(), "divaOrganisation");
+		assertEquals(organisation.getNameInData(), "organisation");
 		assertEquals(organisation.getFirstAtomicValueWithNameInData("organisationName"),
 				"Java-fakulteten");
 	}
@@ -78,8 +78,7 @@ public class DivaDbToCoraOrganisationConverterTest {
 	public void testTypeCode() {
 		rowFromDb.put("type_code", "unit");
 		DataGroup organisation = converter.fromMap(rowFromDb);
-		assertEquals(organisation.getFirstAtomicValueWithNameInData("divaOrganisationOrgType"),
-				"unit");
+		assertEquals(organisation.getFirstAtomicValueWithNameInData("organisationType"), "unit");
 	}
 
 	@Test
@@ -97,16 +96,14 @@ public class DivaDbToCoraOrganisationConverterTest {
 	public void testOrganisationNotEligible() {
 		rowFromDb.put("not_eligible", "t");
 		DataGroup organisation = converter.fromMap(rowFromDb);
-		assertEquals(organisation.getFirstAtomicValueWithNameInData("divaOrganisationEligible"),
-				"no");
+		assertEquals(organisation.getFirstAtomicValueWithNameInData("eligible"), "no");
 	}
 
 	@Test
 	public void testOrganisationEligible() {
 		rowFromDb.put("not_eligible", "f");
 		DataGroup organisation = converter.fromMap(rowFromDb);
-		assertEquals(organisation.getFirstAtomicValueWithNameInData("divaOrganisationEligible"),
-				"yes");
+		assertEquals(organisation.getFirstAtomicValueWithNameInData("eligible"), "yes");
 	}
 
 	private void assertCorrectRecordInfoWithId(DataGroup organisation, String id) {
