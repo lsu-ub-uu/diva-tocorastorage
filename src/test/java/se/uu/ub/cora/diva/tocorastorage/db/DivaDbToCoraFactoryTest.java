@@ -28,7 +28,7 @@ import se.uu.ub.cora.diva.tocorastorage.NotImplementedException;
 import se.uu.ub.cora.sqldatabase.RecordReaderFactory;
 
 public class DivaDbToCoraFactoryTest {
-	private DivaDbToCoraFactory divaDbToCoraFactoryImp;
+	private DivaDbToCoraFactoryImp divaDbToCoraFactoryImp;
 	private RecordReaderFactory readerFactory;
 	private DivaDbToCoraConverterFactory converterFactory;
 
@@ -58,5 +58,15 @@ public class DivaDbToCoraFactoryTest {
 				.factor("divaOrganisation");
 		assertSame(divaDbToCoraOrganisation.getRecordReaderFactory(), readerFactory);
 		assertSame(divaDbToCoraOrganisation.getConverterFactory(), converterFactory);
+	}
+
+	@Test
+	public void testGetReaderFactory() {
+		assertSame(divaDbToCoraFactoryImp.getReaderFactory(), readerFactory);
+	}
+
+	@Test
+	public void testGetConverterFactory() {
+		assertSame(divaDbToCoraFactoryImp.getConverterFactory(), converterFactory);
 	}
 }
